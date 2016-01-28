@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Session;
+using Microsoft.AspNet.Http;
 
 namespace LanCenter.Controllers
 {
@@ -10,7 +13,6 @@ namespace LanCenter.Controllers
     {
         public IActionResult Index()
         {
-
             return View();
         }
 

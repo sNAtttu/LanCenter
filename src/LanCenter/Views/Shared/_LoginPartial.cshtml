@@ -1,25 +1,26 @@
 ﻿@using System.Security.Claims
-@{
-    string username = User.GetUserName().Split('.')[0];
-    username = char.ToUpper(username[0]) + username.Substring(1);
-}
+
 @if (User.IsSignedIn())
 {
-    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
+    string username = User.GetUserName().Split('.')[0];
+    username = char.ToUpper(username[0]) + username.Substring(1);
+    <div id="cssmenu">
+        <ul>
             <li>
                 <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @username!</a>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                <a asp-controller="Account" asp-action="LogOff"><span>Kirjaudu ulos</span></a>
             </li>
         </ul>
-    </form>
+    </div>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
-    </ul>
+    <div id="cssmenu">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a asp-controller="Account" asp-action="Register">Rekisteröidy</a></li>
+            <li><a asp-controller="Account" asp-action="Login">Kirjaudu</a></li>
+        </ul>
+    </div>
 }
