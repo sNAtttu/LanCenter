@@ -22,12 +22,12 @@ textarea {
     z-index: 10 !important;
 }
 
-    .carousel-caption p {
-        font-size: 20px;
-        line-height: 1.4;
-    }
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
 
-    @import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
+@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
 /* Please Keep this font import at the very top of any CSS file */
 @charset "UTF-8";
 /* Starter CSS for Flyout Menu */
@@ -96,12 +96,13 @@ textarea {
 /* Custom CSS Styles */
 .carousel-content-container{
     float:left;
-    width:45%;
+    width:70%;
     height:100%;
     overflow:hidden;
     background-color:white;
 }
-.carousel-dynamic-container{
+.stretch-img{
+    width:100%;
 }
 #dynamic-content{
     padding:10px;

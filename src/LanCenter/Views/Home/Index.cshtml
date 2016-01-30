@@ -1,6 +1,7 @@
 ﻿@using System.Security.Claims
 @using Microsoft.AspNet.Session;
 @using Microsoft.AspNet.Http;
+
 @{
     ViewData["Title"] = "LanCenter";
 }
@@ -8,8 +9,7 @@
 @if (User.IsSignedIn())
 {
 
-    string username = User.GetUserName().Split('.')[0];
-    username = char.ToUpper(username[0]) + username.Substring(1);
+    string username = User.GetUserName();
 
     <h2>@username</h2>
     <h4>@Context.Session.GetString("Name")</h4>
@@ -20,6 +20,4 @@ else
 }
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/knockout/dist/knockout.js"></script>
-    <script src="~/js/index.js"></script>
 }

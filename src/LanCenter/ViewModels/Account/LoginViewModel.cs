@@ -8,9 +8,12 @@ namespace LanCenter.ViewModels.Account
 {
     public class LoginViewModel
     {
-        [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Käyttäjänimi")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

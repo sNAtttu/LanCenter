@@ -13,6 +13,9 @@ namespace LanCenter.Models
         [Required]
         [Display(Name = "Name")]
         public string PlayerName { get; set; }
-        public int Points { get; set; }
+        [Display(Name ="Email")]
+        [Required]
+        public string PlayerEmail { get; set; }
+        public bool IsLoggedIn { get; set; }
     }
 }

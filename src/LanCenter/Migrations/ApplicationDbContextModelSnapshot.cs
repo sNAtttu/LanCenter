@@ -64,6 +64,18 @@ namespace LanCenter.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
                 });
 
+            modelBuilder.Entity("LanCenter.Models.FoodOrder", b =>
+                {
+                    b.Property<int>("FoodOrderID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FoodName");
+
+                    b.Property<int?>("playerPlayerID");
+
+                    b.HasKey("FoodOrderID");
+                });
+
             modelBuilder.Entity("LanCenter.Models.Game", b =>
                 {
                     b.Property<int>("GameID")
@@ -82,37 +94,34 @@ namespace LanCenter.Migrations
                     b.HasKey("GameID");
                 });
 
-            modelBuilder.Entity("LanCenter.Models.Leaderboard", b =>
-                {
-                    b.Property<int>("LeaderboardID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("GameID");
-
-                    b.Property<int?>("LeaderboardLeaderboardID");
-
-                    b.Property<int>("PlayerID");
-
-                    b.Property<string>("PlayerName");
-
-                    b.Property<int>("PlayerPoints");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("LeaderboardID");
-                });
-
             modelBuilder.Entity("LanCenter.Models.Player", b =>
                 {
                     b.Property<int>("PlayerID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("IsLoggedIn");
+
+                    b.Property<string>("PlayerEmail")
+                        .IsRequired();
+
                     b.Property<string>("PlayerName")
                         .IsRequired();
 
+                    b.HasKey("PlayerID");
+                });
+
+            modelBuilder.Entity("LanCenter.Models.PlayerGameLinker", b =>
+                {
+                    b.Property<int>("PlayerGameLinkerID")
+                        .ValueGeneratedOnAdd();
+
                     b.Property<int>("Points");
 
-                    b.HasKey("PlayerID");
+                    b.Property<int?>("gameGameID");
+
+                    b.Property<int?>("playerPlayerID");
+
+                    b.HasKey("PlayerGameLinkerID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -197,6 +206,13 @@ namespace LanCenter.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
                 });
 
+            modelBuilder.Entity("LanCenter.Models.FoodOrder", b =>
+                {
+                    b.HasOne("LanCenter.Models.Player")
+                        .WithMany()
+                        .HasForeignKey("playerPlayerID");
+                });
+
             modelBuilder.Entity("LanCenter.Models.Game", b =>
                 {
                     b.HasOne("LanCenter.Models.Game")
@@ -204,15 +220,15 @@ namespace LanCenter.Migrations
                         .HasForeignKey("GameGameID");
                 });
 
-            modelBuilder.Entity("LanCenter.Models.Leaderboard", b =>
+            modelBuilder.Entity("LanCenter.Models.PlayerGameLinker", b =>
                 {
                     b.HasOne("LanCenter.Models.Game")
                         .WithMany()
-                        .HasForeignKey("GameID");
+                        .HasForeignKey("gameGameID");
 
-                    b.HasOne("LanCenter.Models.Leaderboard")
+                    b.HasOne("LanCenter.Models.Player")
                         .WithMany()
-                        .HasForeignKey("LeaderboardLeaderboardID");
+                        .HasForeignKey("playerPlayerID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>

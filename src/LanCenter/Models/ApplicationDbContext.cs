@@ -10,6 +10,10 @@ namespace LanCenter.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public ApplicationDbContext()
+        {
+            Database.EnsureCreated();
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -18,7 +22,8 @@ namespace LanCenter.Models
             // Add your customizations after calling base.OnModelCreating(builder);
         }
         public DbSet<Game> Game { get; set; }
-        public DbSet<Leaderboard> Leaderboard { get; set; }
         public DbSet<Player> Player { get; set; }
+        public DbSet<PlayerGameLinker> PlayerGameLinker { get; set; }
+        public DbSet<FoodOrder> FoodOrder { get; set; }
     }
 }
