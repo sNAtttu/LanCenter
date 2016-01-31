@@ -1,14 +1,13 @@
 @model LanCenter.Models.Game
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Muokkaa";
 }
 
-<h2>Edit</h2>
+<h2>Muokkaa</h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>Game</h4>
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -31,6 +30,13 @@
             <div class="col-md-10">
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group" style="display:none;">
+            <label asp-for="GameID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GameID" class="form-control" />
+                <span asp-validation-for="GameID" class="text-danger" />
             </div>
         </div>
         <div class="form-group">

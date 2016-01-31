@@ -121,7 +121,7 @@ input,
 optgroup,
 select,
 textarea {
-  color: inherit;
+  color: yellow;
   font: inherit;
   margin: 0;
 }
@@ -201,7 +201,7 @@ th {
   *:before,
   *:after {
     background: transparent !important;
-    color: #000 !important;
+    color: yellow !important;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
     text-shadow: none !important;
@@ -1089,7 +1089,7 @@ body {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #888888;
+  color: yellow;
   background-color: #060606;
 }
 input,
@@ -1191,7 +1191,7 @@ h6,
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
-  color: #ffffff;
+  color: yellow;
 }
 h1 small,
 h2 small,

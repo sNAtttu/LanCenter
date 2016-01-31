@@ -35,9 +35,10 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            <a asp-action="Edit" asp-route-id="@item.GameID">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.GameID">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.GameID">Delete</a>
+            <a asp-controller="Games" asp-action="MarkOwned" asp-route-id="@item.GameID">Omistan</a> |
+            <a asp-controller="Games" asp-action="MarkNotOwned" asp-route-id="@item.GameID">En Omista</a> |
+            <a asp-action="Edit" asp-route-id="@item.GameID">Muokkaa</a> |
+            <a asp-action="Delete" asp-route-id="@item.GameID">Poista</a>
         </td>
     </tr>
 }

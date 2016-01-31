@@ -3,6 +3,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using LanCenter.Models;
+using System.Security.Claims;
 
 namespace LanCenter.Controllers
 {
@@ -114,6 +115,34 @@ namespace LanCenter.Controllers
             Game game = _context.Game.Single(m => m.GameID == id);
             _context.Game.Remove(game);
             _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        // GET
+        // Mark game as owned
+        public IActionResult MarkOwned(int id)
+        {
+            Game game = _context.Game.SingleOrDefault(g => g.GameID == id);
+            Player player = _context.Player.SingleOrDefault(p => p.PlayerName == User.GetUserName());
+            if(player != null && game != null)
+            {
+                _context.PlayerGameLinker.Add(new PlayerGameLinker { game = game, player = player, Points = 0 });
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+        // GET
+        // Mark game as owned
+        public IActionResult MarkNotOwned(int id)
+        {
+            Game game = _context.Game.SingleOrDefault(g => g.GameID == id);
+            Player player = _context.Player.SingleOrDefault(p => p.PlayerName == User.GetUserName());
+            if (player != null && game != null)
+            {
+                PlayerGameLinker linkToDelete = _context.PlayerGameLinker.Where(p => p.player.PlayerID == player.PlayerID &&
+                p.game.GameID == id).Single();
+                _context.PlayerGameLinker.Remove(linkToDelete);
+                _context.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
     }

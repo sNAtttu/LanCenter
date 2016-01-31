@@ -14,6 +14,7 @@ namespace LanCenter.Models
         public string Title { get; set; }
         [Required]
         public string Genre { get; set; }
+        [Display(Name = "Steam")]
         public bool FoundFromSteam { get; set; }
         public virtual ICollection<Game> Games { get; set; }
     }

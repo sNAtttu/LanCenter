@@ -1,18 +1,21 @@
 @model IEnumerable<LanCenter.Models.FoodOrder>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ruokatilaukset";
 }
 
-<h2>Index</h2>
+<h2>Tilaukset</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Tee uusi</a>
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            Tilaaja
         </th>
         <th></th>
     </tr>
@@ -23,9 +26,11 @@
             @Html.DisplayFor(modelItem => item.FoodName)
         </td>
         <td>
-            <a asp-action="Edit" asp-route-id="@item.FoodOrderID">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.FoodOrderID">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.FoodOrderID">Delete</a>
+            @Html.DisplayFor(modelItem => item.player.PlayerName)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.FoodOrderID">Muokkaa</a> |
+            <a asp-action="Delete" asp-route-id="@item.FoodOrderID">Poista</a>
         </td>
     </tr>
 }

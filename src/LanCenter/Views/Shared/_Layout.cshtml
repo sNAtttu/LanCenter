@@ -7,7 +7,7 @@
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/bootswatch/yeti/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootswatch/slate/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
@@ -19,17 +19,29 @@
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
-    <nav id='cssmenu' class="nav navbar-left">
-        <ul class="nav navbar-nav">
-            <li class="active"><a asp-controller="Home" asp-action="Index">Etusivu</a></li>
-            <li><a asp-controller="Leaderboards" asp-action="Index"><span>LEADERBOARDS</span></a></li>
-            <li><a asp-controller="FoodOrders" asp-action="Index"><span>Ruokatilauksesi</span></a></li>
-            <li class='last'><a href='#'><span>Kuvia</span></a></li>
-        </ul>
-        @await Html.PartialAsync("_LoginPartial")
-    </nav>
-        <div class="carousel-content-container">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <div>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-controller="Home" asp-action="Index" class="navbar-brand">LanCenter</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-controller="Home" asp-action="Index">Etusivu</a></li>
+                        <li><a asp-controller="FoodOrders" asp-action="Index">Ruokatilaukset</a></li>
+                        <li><a asp-controller="Games" asp-action="Index">LAN Pelit</a></li>
+                    </ul>
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </div>
+            <div id="myCarousel" class="carousel slide carousel-custom" data-ride="carousel" data-interval="6000">
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -38,7 +50,7 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img src="~/images/ASP-NET-Banners-01.png" alt="ASP.NET" class="img-responsive stretch-img"/>
+                        <img src="~/images/ASP-NET-Banners-01.png" alt="ASP.NET" class="img-responsive img-stretch" />
                         <div class="carousel-caption">
                             <p>
                                 LanCenter on tehty käyttäen KnockoutJS, ASP.NET 5, MVC 6 and EF 7 -tekniikoita.
@@ -46,12 +58,12 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="~/images/Banner-Joose.png" alt="Joooooooose" class="img-responsive stretch-img" />
+                        <img src="~/images/Banner-Joose.png" alt="Joooooooose" class="img-responsive img-stretch" />
                         <div class="carousel-caption">
                         </div>
                     </div>
                     <div class="item">
-                        <img src="~/images/Banner-Pizza.png" alt="Package Management" class="img-responsive stretch-img" />
+                        <img src="~/images/Banner-Pizza.png" alt="Package Management" class="img-responsive img-stretch" />
                         <div class="carousel-caption">
                             <p class="pull-left">
                                 Suomalaisen kotiruoan Laneille tarjoaa
@@ -62,7 +74,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="~/images/Banner-MC.png" alt="Microsoft Azure" class="img-responsive stretch-img" />
+                        <img src="~/images/Banner-MC.png" alt="Microsoft Azure" class="img-responsive img-stretch" />
                         <div class="carousel-caption">
                             <p class="pull-left">
                                 Tai jos Pizza ei kelpaa.....
@@ -82,13 +94,14 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-            <div id="dynamic-content">
-                @RenderBody()
-            </div>
+        </div>
+        <div id="dynamic-content" style="margin-left:25%;">
+            @RenderBody()
         </div>
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/knockout/dist/knockout.js"></script>
         <script src="~/js/dataservice.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>

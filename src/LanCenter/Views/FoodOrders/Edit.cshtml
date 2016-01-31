@@ -1,14 +1,13 @@
 @model LanCenter.Models.FoodOrder
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Muokkaa";
 }
 
-<h2>Edit</h2>
+<h2>Muokkaa</h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>FoodOrder</h4>
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -17,17 +16,22 @@
                 <input asp-for="FoodName" class="form-control" />
                 <span asp-validation-for="FoodName" class="text-danger" />
             </div>
+            <label asp-for="FoodOrderID" class="col-md-2 control-label" style="display:none;"></label>
+            <div class="col-md-10" style="display:none;">
+                <input asp-for="FoodOrderID" class="form-control" />
+                <span asp-validation-for="FoodOrderID" class="text-danger" />
+            </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Tallenna" class="btn btn-default" />
             </div>
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Listaukseen</a>
 </div>
 
 @section Scripts {

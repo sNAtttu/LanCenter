@@ -19,7 +19,13 @@ namespace LanCenter.Controllers
         // GET: FoodOrders
         public IActionResult Index()
         {
-            return View(_context.FoodOrder.ToList());
+            var players = _context.Player.ToList();
+            var foodOrders = _context.FoodOrder.ToList();
+            foreach(var order in foodOrders)
+            {
+                order.player = players.First(p => p.PlayerID == order.player.PlayerID);
+            }
+            return View(foodOrders);
         }
 
         // GET: FoodOrders/Details/5
@@ -52,6 +58,8 @@ namespace LanCenter.Controllers
         {
             if (ModelState.IsValid)
             {
+                var player = _context.Player.Where(p => p.PlayerName == User.GetUserName()).SingleOrDefault();
+                foodOrder.player = player;
                 _context.FoodOrder.Add(foodOrder);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
@@ -66,7 +74,6 @@ namespace LanCenter.Controllers
             {
                 return HttpNotFound();
             }
-
             FoodOrder foodOrder = _context.FoodOrder.Single(m => m.FoodOrderID == id);
             if (foodOrder == null)
             {
@@ -82,6 +89,7 @@ namespace LanCenter.Controllers
         {
             if (ModelState.IsValid)
             {
+                foodOrder.player = _context.Player.Where(p => p.PlayerName == User.GetUserName()).SingleOrDefault();
                 _context.Update(foodOrder);
                 _context.SaveChanges();
                 return RedirectToAction("Index");

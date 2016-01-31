@@ -2,25 +2,21 @@
 
 @if (User.IsSignedIn())
 {
-    string username = User.GetUserName().Split('.')[0];
-    username = char.ToUpper(username[0]) + username.Substring(1);
-    <div id="cssmenu">
-        <ul>
+    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @username!</a>
+                <a asp-controller="Manage" asp-action="Index" title="Manage">@User.GetUserName()!</a>
             </li>
             <li>
                 <a asp-controller="Account" asp-action="LogOff"><span>Kirjaudu ulos</span></a>
             </li>
         </ul>
-    </div>
+    </form>
 }
 else
 {
-    <div id="cssmenu">
-        <ul class="nav navbar-nav navbar-right">
-            <li><a asp-controller="Account" asp-action="Register">Rekisteröidy</a></li>
-            <li><a asp-controller="Account" asp-action="Login">Kirjaudu</a></li>
-        </ul>
-    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-controller="Account" asp-action="Register">Rekisteröidy</a></li>
+        <li><a asp-controller="Account" asp-action="Login">Kirjaudu sisään</a></li>
+    </ul>
 }

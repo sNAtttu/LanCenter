@@ -8,16 +8,32 @@
 <h1>Tervetuloa!</h1>
 @if (User.IsSignedIn())
 {
-
     string username = User.GetUserName();
 
-    <h2>@username</h2>
-    <h4>@Context.Session.GetString("Name")</h4>
+    <h2 id="userName">@username</h2>
+
+    <div class="row">
+        <div class="col-md-3" data-bind="if:playerGames().length > 0">
+            <h4>Pelisi:</h4>
+           <ul data-bind="foreach: playerGames()" class="list-unstyled">
+               <li class="list-group-item home-list-item"><i class="fa-angle-double-right"> </i><span data-bind="text: Title"></span></li>
+           </ul>
+        </div>
+        <div class="col-md-3" data-bind="if:playerFoods().length > 0">
+            <h4>Ruokatilaukset:</h4>
+            <ul data-bind="foreach: playerFoods()" class="list-unstyled">
+                <li class="list-group-item home-list-item"><i class="fa-angle-double-right"> </i><span data-bind="text: FoodName"></span></li>
+            </ul>
+        </div>
+    </div>
+    
 }
 else
 {
     <h4>Kirjaudu sisään jatkaaksesi...</h4>
 }
+
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/index.js"></script>
 }
