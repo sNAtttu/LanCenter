@@ -1,36 +1,36 @@
 @model LanCenter.Models.Game
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Tiedot";
 }
 
-<h2>Details</h2>
+<h2>Tiedot</h2>
 
 <div>
-    <h4>Game</h4>
+    <h4 id="gameName">@Html.DisplayFor(model => model.Title)</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FoundFromSteam)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FoundFromSteam)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-md-6" data-bind="if:players">
+            <!--ko if:players().length != 0-->
+            <h3 data-bind="text: 'The Owners: '"></h3>
+            <ul class="list-unstyled" data-bind="foreach: players">
+                <li class="list-group-item">
+                    <span data-bind="text: PlayerName" class="game-details-font"></span>
+                    <span data-bind="text: IsLoggedIn ? 'Paikalla' : 'Ei paikalla' " class="game-details-font" style="float:right;"></span>
+                </li>
+            </ul>
+            <!--/ko-->
+            <!--ko if:players().length == 0-->
+            <h3 data-bind="text: 'Nobody has bought this... yet...'"></h3>
+            <!--/ko-->
+        </div>
+    </div>
 </div>
 <p>
-    <a asp-action="Edit" asp-route-id="@Model.GameID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.GameID">Muokkaa</a> |
+    <a asp-action="Index">Listaukseen</a>
 </p>
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/Games/Details.js"></script>
+}

@@ -4,67 +4,61 @@ using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 using LanCenter.Models;
-using System.Security.Claims;
 
 namespace LanCenter.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Games")]
-    public class GamesController : Controller
+    [Route("api/Players")]
+    public class PlayersController : Controller
     {
         private ApplicationDbContext _context;
 
-        public GamesController(ApplicationDbContext context)
+        public PlayersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Games
+        // GET: api/Players
         [HttpGet]
-        public IEnumerable<Game> GetGame()
+        public IEnumerable<Player> GetPlayer()
         {
-            return _context.Game;
+            return _context.Player;
         }
 
-        // GET: api/Games/sNAttu
-        [HttpGet("{id}", Name = "GetGame")]
-        public IActionResult GetGame([FromRoute] string id)
+        // GET: api/Players/5
+        [HttpGet("{id}", Name = "GetPlayer")]
+        public IActionResult GetPlayer([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return HttpBadRequest(ModelState);
             }
 
-            var games = (from g in _context.Game
-                         join p in _context.PlayerGameLinker on g.GameID equals p.game.GameID
-                         where p.player.PlayerName == id
-                         select g).ToList();
+            Player player = _context.Player.Single(m => m.PlayerID == id);
 
-
-            if (games == null)
+            if (player == null)
             {
                 return HttpNotFound();
             }
 
-            return Ok(games);
+            return Ok(player);
         }
 
-
-        // PUT: api/Games/5
+        // PUT: api/Players/5
         [HttpPut("{id}")]
-        public IActionResult PutGame(int id, [FromBody] Game game)
+        public IActionResult PutPlayer(int id, [FromBody] Player player)
         {
             if (!ModelState.IsValid)
             {
                 return HttpBadRequest(ModelState);
             }
 
-            if (id != game.GameID)
+            if (id != player.PlayerID)
             {
                 return HttpBadRequest();
             }
 
-            _context.Entry(game).State = EntityState.Modified;
+            _context.Entry(player).State = EntityState.Modified;
 
             try
             {
@@ -72,7 +66,7 @@ namespace LanCenter.Api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GameExists(id))
+                if (!PlayerExists(id))
                 {
                     return HttpNotFound();
                 }
@@ -85,22 +79,23 @@ namespace LanCenter.Api.Controllers
             return new HttpStatusCodeResult(StatusCodes.Status204NoContent);
         }
 
-        // POST: api/Games
+        // POST: api/Players
         [HttpPost]
-        public IActionResult PostGame([FromBody] Game game)
+        public IActionResult PostPlayer([FromBody] Player player)
         {
             if (!ModelState.IsValid)
             {
                 return HttpBadRequest(ModelState);
             }
-            _context.Game.Add(game);
+
+            _context.Player.Add(player);
             try
             {
                 _context.SaveChanges();
             }
             catch (DbUpdateException)
             {
-                if (GameExists(game.GameID))
+                if (PlayerExists(player.PlayerID))
                 {
                     return new HttpStatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -110,28 +105,28 @@ namespace LanCenter.Api.Controllers
                 }
             }
 
-            return CreatedAtRoute("GetGame", new { id = game.GameID }, game);
+            return CreatedAtRoute("GetPlayer", new { id = player.PlayerID }, player);
         }
 
-        // DELETE: api/Games/5
+        // DELETE: api/Players/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteGame(int id)
+        public IActionResult DeletePlayer(int id)
         {
             if (!ModelState.IsValid)
             {
                 return HttpBadRequest(ModelState);
             }
 
-            Game game = _context.Game.Single(m => m.GameID == id);
-            if (game == null)
+            Player player = _context.Player.Single(m => m.PlayerID == id);
+            if (player == null)
             {
                 return HttpNotFound();
             }
 
-            _context.Game.Remove(game);
+            _context.Player.Remove(player);
             _context.SaveChanges();
 
-            return Ok(game);
+            return Ok(player);
         }
 
         protected override void Dispose(bool disposing)
@@ -143,15 +138,9 @@ namespace LanCenter.Api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool GameExists(int id)
+        private bool PlayerExists(int id)
         {
-            return _context.Game.Count(e => e.GameID == id) > 0;
-        }
-        public Player GetPlayer()
-        {
-            var player = _context.Player.Where(p => p.PlayerName == User.GetUserName()).SingleOrDefault();
-            if (player != null) return player;
-            return null;
+            return _context.Player.Count(e => e.PlayerID == id) > 0;
         }
     }
 }

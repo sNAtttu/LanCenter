@@ -45,6 +45,9 @@ textarea {
     margin-left:25%;
     margin-top:50px;
 }
+.game-details-font{
+    font-size:24px;
+}
 @media (min-width: 768px) {
     .carousel-caption {
         z-index: 10 !important;

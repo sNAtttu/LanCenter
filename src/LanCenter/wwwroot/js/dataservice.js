@@ -18,3 +18,13 @@ function GetFoods(userName, resultCallBack) {
     });
     return foods;
 }
+function GetGamesByPlayerName(gameName, resultCallBack) {
+    var players = [];
+    $.ajax({
+        url: "http://localhost:8000/api/GamesCustomController/" + gameName
+
+    }).done(function (result) {
+        resultCallBack(result);
+    });
+    return players;
+}
