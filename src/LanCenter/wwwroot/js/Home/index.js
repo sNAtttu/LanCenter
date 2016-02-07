@@ -12,12 +12,12 @@ function activate() {
     GetGames(username, function(results) {
         results.forEach(function (game) {
             vm.playerGames.push(game);
-        })
+        });
     });
     GetFoods(username, function (results) {
         results.forEach(function (food) {
             vm.playerFoods.push(food);
-        })
-    })
-    ko.applyBindings(vm);
+        });
+    });
+    ko.applyBindings(vm, document.getElementById('PlayerGamesDiv'));
 }

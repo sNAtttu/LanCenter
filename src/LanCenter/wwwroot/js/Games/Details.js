@@ -14,7 +14,7 @@ function activate() {
             vm.players.push(ko.observable(player));
         })
     });
-    ko.applyBindings(vm);
+    ko.applyBindings(vm, document.getElementById('GamesDetails'));
 }
 function refreshArray() {
     var gameName = $("#gameName").text();

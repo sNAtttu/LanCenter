@@ -9,7 +9,7 @@
 <div>
     <h4 id="gameName">@Html.DisplayFor(model => model.Title)</h4>
     <hr />
-    <div class="row">
+    <div class="row" id="GamesDetails">
         <div class="col-md-6" data-bind="if:players">
             <!--ko if:players().length != 0-->
             <h3 data-bind="text: 'The Owners: '"></h3>

@@ -11,7 +11,7 @@
     string username = User.GetUserName();
 
     <h2 id="userName">@username</h2>
-    <div class="row">
+    <div id="PlayerGamesDiv" class="row">
         <div class="col-md-3" data-bind="if:playerGames().length > 0">
             <h4>Pelisi:</h4>
            <ul data-bind="foreach: playerGames()" class="list-unstyled">
@@ -23,9 +23,6 @@
             <ul data-bind="foreach: playerFoods()" class="list-unstyled">
                 <li class="list-group-item home-list-item"><i class="fa-angle-double-right"> </i><span data-bind="text: FoodName"></span></li>
             </ul>
-        </div>
-        <div class="col-md-3">
-            <button class="btn btn-success" data-bind="click: function(){ history.go(0);}"><i class="fa-refresh"></i></button>
         </div>
     </div>
     

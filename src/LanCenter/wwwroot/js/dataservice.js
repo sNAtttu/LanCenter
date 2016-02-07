@@ -1,7 +1,7 @@
 ﻿function GetGames(userName, resultCallBack) {
     var games = [];
     $.ajax({
-        url: "http://localhost:8000/api/Games/"+userName
+        url: "http://lancenter.azurewebsites.net/api/Games/" + userName
 
     }).done(function (result) {
         resultCallBack(result);
@@ -11,7 +11,7 @@
 function GetFoods(userName, resultCallBack) {
     var foods = [];
     $.ajax({
-        url: "http://localhost:8000/api/FoodOrders/" + userName
+        url: "http://lancenter.azurewebsites.net/api/FoodOrders/" + userName
 
     }).done(function (result) {
         resultCallBack(result);
@@ -21,7 +21,7 @@ function GetFoods(userName, resultCallBack) {
 function GetGamesByPlayerName(gameName, resultCallBack) {
     var players = [];
     $.ajax({
-        url: "http://localhost:8000/api/GamesCustomController/" + gameName
+        url: "http://lancenter.azurewebsites.net/api/GamesCustomController/" + gameName
 
     }).done(function (result) {
         resultCallBack(result);
