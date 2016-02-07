@@ -5,7 +5,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Kirjaudu sisään";
 }
 
 <h2>@ViewData["Title"].</h2>
@@ -13,7 +13,7 @@
     <div class="col-md-12">
         <section>
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                <h4>Use a local account to log in.</h4>
+                <h4>Kirjaudu sisään paikallisella tunnuksella.</h4>
                 <hr />
                 <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
                 <div class="form-group">
@@ -40,14 +40,14 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-default">Log in</button>
+                        <button type="submit" class="btn btn-default">Sisään siitä</button>
                     </div>
                 </div>
                 <p>
-                    <a asp-action="Register">Register as a new user?</a>
+                    <a asp-action="Register">Uusi käyttäjä?</a>
                 </p>
                 <p>
-                    <a asp-action="ForgotPassword">Forgot your password?</a>
+                    <a asp-action="ForgotPassword">Salasana unohtunut? lulz</a>
                 </p>
             </form>
         </section>

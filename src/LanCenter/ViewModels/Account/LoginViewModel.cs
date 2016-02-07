@@ -17,9 +17,10 @@ namespace LanCenter.ViewModels.Account
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Salasana")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Muista minut?")]
         public bool RememberMe { get; set; }
     }
 }

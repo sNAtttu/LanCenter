@@ -9,22 +9,22 @@ namespace LanCenter.ViewModels.Account
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "Käyttäjänimi")]
         public string Username { get; set; }
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "Laita kunnon sähköposti siihen....")]
+        [Display(Name = "Sähköposti")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Salasanan pitää olla ainakin {2} merkkiä.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Salasana")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Vahvista salasana")]
+        [Compare("Password", ErrorMessage = "Salasanat eivät ole samat -__-")]
         public string ConfirmPassword { get; set; }
     }
 }
